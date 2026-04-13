@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro Porcino | Agrométrica</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1e3c2f, #2e7d32);
+            min-height: 100vh;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        main {
+            padding: 30px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            background: white;
+            width: 100%;
+            max-width: 1000px;
+            border-radius: 18px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+            padding: 30px;
+        }
+
+        h2 {
+            color: #2e7d32;
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .section {
+            margin-top: 25px;
+            padding: 20px;
+            background: #f7fbf8;
+            border-left: 6px solid #2e7d32;
+            border-radius: 12px;
+        }
+
+        .section h3 {
+            margin-top: 0;
+            color: #1e5a28;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 6px;
+            color: #2c3e2f;
+            font-size: 14px;
+        }
+
+        input {
+            padding: 11px;
+            border: 1px solid #cfd8d3;
+            border-radius: 10px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .actions {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .btn {
+            padding: 12px 22px;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 0 8px;
+        }
+
+        .btn-save {
+            background: #2e7d32;
+        }
+
+        .btn-save:hover {
+            background: #256428;
+        }
+
+        .btn-back {
+            background: #607d8b;
+            text-decoration: none;
+            display: inline-block;
+            line-height: 16px;
+        }
+
+        .btn-back:hover {
+            background: #4b636e;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Agrométrica System</h1>
+</header>
+
+<main>
+    <div class="container">
+        <h2>Formulario de Registro Porcino</h2>
+
+        <form th:action="@{/porcino/guardar}" th:object="${registro}" method="post">
+
+            <div class="section">
+                <h3>Información general</h3>
+                <div class="grid">
+                    <div class="field">
+                        <label>Nombre de la granja</label>
+                        <input type="text" th:field="*{nombreGranja}" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Producción</h3>
+                <div class="grid">
+                    <div class="field">
+                        <label>Número de animales</label>
+                        <input type="number" th:field="*{numeroAnimales}">
+                    </div>
+                    <div class="field">
+                        <label>Fecha inicio</label>
+                        <input type="date" th:field="*{fechaInicio}">
+                    </div>
+                    <div class="field">
+                        <label>Fecha fin</label>
+                        <input type="date" th:field="*{fechaFin}">
+                    </div>
+                    <div class="field">
+                        <label>Peso inicial (kg)</label>
+                        <input type="number" step="0.01" th:field="*{pesoInicial}">
+                    </div>
+                    <div class="field">
+                        <label>Peso final (kg)</label>
+                        <input type="number" step="0.01" th:field="*{pesoFinal}">
+                    </div>
+                    <div class="field">
+                        <label>Muertos</label>
+                        <input type="number" th:field="*{muertos}">
+                    </div>
+                    <div class="field">
+                        <label>Vendidos en producción</label>
+                        <input type="number" th:field="*{vendidosProduccion}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Alimentación</h3>
+                <div class="grid">
+                    <div class="field">
+                        <label>Consumo total (kg)</label>
+                        <input type="number" step="0.01" th:field="*{consumoTotal}">
+                    </div>
+                    <div class="field">
+                        <label>Consumo diario (kg)</label>
+                        <input type="number" step="0.01" th:field="*{consumoDiario}">
+                    </div>
+                    <div class="field">
+                        <label>Precio por kg</label>
+                        <input type="number" step="0.01" th:field="*{precioKgAlimento}">
+                    </div>
+                    <div class="field">
+                        <label>Desperdicio (%)</label>
+                        <input type="number" step="0.01" th:field="*{desperdicio}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Sanidad</h3>
+                <div class="grid">
+                    <div class="field">
+                        <label>Enfermos</label>
+                        <input type="number" th:field="*{enfermos}">
+                    </div>
+                    <div class="field">
+                        <label>Tratamientos</label>
+                        <input type="number" th:field="*{tratamientos}">
+                    </div>
+                    <div class="field">
+                        <label>Costo medicamentos</label>
+                        <input type="number" step="0.01" th:field="*{costoMedicamentos}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Reproducción</h3>
+                <div class="grid">
+                    <div class="field">
+                        <label>Cerdas</label>
+                        <input type="number" th:field="*{cerdas}">
+                    </div>
+                    <div class="field">
+                        <label>Partos</label>
+                        <input type="number" th:field="*{partos}">
+                    </div>
+                    <div class="field">
+                        <label>Lechones vivos</label>
+                        <input type="number" th:field="*{lechonesVivos}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Costos</h3>
+                <div class="grid">
+                    <div class="field">
+                        <label>Costo alimento</label>
+                        <input type="number" step="0.01" th:field="*{costoAlimento}">
+                    </div>
+                    <div class="field">
+                        <label>Mano de obra</label>
+                        <input type="number" step="0.01" th:field="*{costoManoObra}">
+                    </div>
+                    <div class="field">
+                        <label>Energía</label>
+                        <input type="number" step="0.01" th:field="*{costoEnergia}">
+                    </div>
+                    <div class="field">
+                        <label>Otros</label>
+                        <input type="number" step="0.01" th:field="*{costoOtros}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Ventas</h3>
+                <div class="grid">
+                    <div class="field">
+                        <label>Vendidos en venta</label>
+                        <input type="number" th:field="*{vendidosVenta}">
+                    </div>
+                    <div class="field">
+                        <label>Peso total venta (kg)</label>
+                        <input type="number" step="0.01" th:field="*{pesoTotalVenta}">
+                    </div>
+                    <div class="field">
+                        <label>Precio por kg venta</label>
+                        <input type="number" step="0.01" th:field="*{precioKgVenta}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="actions">
+                <a th:href="@{/inicio}" class="btn btn-back">Volver</a>
+                <button type="submit" class="btn btn-save">Guardar registro</button>
+            </div>
+        </form>
+    </div>
+</main>
+</body>
+</html>

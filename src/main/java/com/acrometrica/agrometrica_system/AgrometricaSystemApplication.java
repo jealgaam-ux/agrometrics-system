@@ -9,5 +9,4 @@ public class AgrometricaSystemApplication {
     public static void main(String[] args) {
         SpringApplication.run(AgrometricaSystemApplication.class, args);
     }
-
 }

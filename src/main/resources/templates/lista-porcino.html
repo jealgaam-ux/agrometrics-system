@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Registros | Agrométrica</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1e3c2f, #2e7d32);
+            min-height: 100vh;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        main {
+            padding: 30px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            background: white;
+            width: 100%;
+            max-width: 1100px;
+            border-radius: 18px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+            padding: 30px;
+        }
+
+        h2 {
+            color: #2e7d32;
+            text-align: center;
+            margin-top: 0;
+        }
+
+        .filters {
+            margin-top: 20px;
+            background: #f7fbf8;
+            border-left: 6px solid #2e7d32;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .filters form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            align-items: end;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 6px;
+            color: #2c3e2f;
+            font-size: 14px;
+        }
+
+        input {
+            padding: 11px;
+            border: 1px solid #cfd8d3;
+            border-radius: 10px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .btn-filter, .btn-clear {
+            display: inline-block;
+            padding: 12px 16px;
+            border-radius: 10px;
+            color: white;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .btn-filter {
+            background: #2e7d32;
+        }
+
+        .btn-filter:hover {
+            background: #256428;
+        }
+
+        .btn-clear {
+            background: #607d8b;
+        }
+
+        .btn-clear:hover {
+            background: #4b636e;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 25px;
+        }
+
+        thead {
+            background: #2e7d32;
+            color: white;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #f1f8f4;
+        }
+
+        tbody tr:hover {
+            background: #e0f2e9;
+        }
+
+        .btn-ver {
+            background: #2e7d32;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-ver:hover {
+            background: #256428;
+        }
+
+        .actions {
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            border-radius: 10px;
+            color: white;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+
+        .btn-green {
+            background: #2e7d32;
+        }
+
+        .btn-green:hover {
+            background: #256428;
+        }
+
+        .btn-gray {
+            background: #607d8b;
+        }
+
+        .btn-gray:hover {
+            background: #4b636e;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Agrométrica System</h1>
+</header>
+
+<main>
+    <div class="container">
+        <h2>Registros Porcinos</h2>
+
+        <div class="filters">
+            <form th:action="@{/porcino/lista}" method="get">
+                <div class="field">
+                    <label>Nombre de la granja</label>
+                    <input type="text" name="nombreGranja" th:value="${nombreGranja}">
+                </div>
+
+                <div class="field">
+                    <label>Fecha de registro</label>
+                    <input type="date" name="fecha" th:value="${fecha}">
+                </div>
+
+                <div class="field">
+                    <button type="submit" class="btn-filter">Filtrar</button>
+                </div>
+
+                <div class="field">
+                    <a th:href="@{/porcino/lista}" class="btn-clear">Limpiar</a>
+                </div>
+            </form>
+        </div>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Granja</th>
+                <th>Fecha</th>
+                <th>Peso Ganado</th>
+                <th>Utilidad</th>
+                <th>Rentabilidad (%)</th>
+                <th>Acción</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="r : ${registros}">
+                <td th:text="${r.nombreGranja}"></td>
+                <td th:text="${r.fechaRegistro}"></td>
+                <td th:text="${r.pesoGanado}"></td>
+                <td th:text="${r.utilidad}"></td>
+                <td th:text="${r.rentabilidad}"></td>
+                <td>
+                    <a th:href="@{'/porcino/ver/' + ${r.id}}" class="btn-ver">Ver</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="actions">
+            <a th:href="@{/porcino}" class="btn btn-green">Nuevo registro</a>
+            <a th:href="@{/inicio}" class="btn btn-gray">Volver al inicio</a>
+        </div>
+    </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio | Agrométrica System</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1e3c2f, #2e7d32);
+            min-height: 100vh;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        main {
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            background: white;
+            width: 100%;
+            max-width: 520px;
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+            text-align: center;
+        }
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 25px;
+            color: #2e7d32;
+        }
+
+        .info-box {
+            background: #f1f8f4;
+            border-left: 5px solid #2e7d32;
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+            text-align: left;
+            color: #2c3e2f;
+            font-size: 15px;
+        }
+
+        .mensaje {
+            margin-top: 22px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .btn-main {
+            display: block;
+            margin-top: 25px;
+            padding: 14px;
+            border-radius: 12px;
+            background: #2e7d32;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-main:hover {
+            background: #256428;
+        }
+
+        .btn-secondary {
+            display: block;
+            margin-top: 12px;
+            padding: 14px;
+            border-radius: 12px;
+            background: #1e5a28;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: #17471f;
+        }
+
+        .logout-btn {
+            margin-top: 20px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            background: #c62828;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #9a1f1f;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Agrométrica System</h1>
+</header>
+
+<main>
+    <div class="card">
+
+        <h2>Bienvenido</h2>
+
+        <div class="info-box">
+            <strong>👤 Nombre:</strong>
+            <span th:text="${usuario.nombre}"></span>
+        </div>
+
+        <div class="info-box">
+            <strong>📧 Correo:</strong>
+            <span th:text="${usuario.correo}"></span>
+        </div>
+
+        <div class="info-box">
+            <strong>🛡️ Rol:</strong>
+            <span th:text="${usuario.rol}"></span>
+        </div>
+
+        <p class="mensaje">Has iniciado sesión correctamente.</p>
+
+        <a th:href="@{/porcino}" class="btn-main">
+            🐷 Registrar nuevo ciclo porcino
+        </a>
+
+        <a th:href="@{/porcino/lista}" class="btn-secondary">
+            📊 Consultar registros
+        </a>
+
+        <form th:action="@{/logout}" method="post">
+            <button class="logout-btn">
+                Cerrar sesión
+            </button>
+        </form>
+    </div>
+</main>
+</body>
+</html>

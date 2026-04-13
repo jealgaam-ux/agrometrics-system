@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Registro | Agrométrica</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1e3c2f, #2e7d32);
+            min-height: 100vh;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        main {
+            padding: 30px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            background: white;
+            width: 100%;
+            max-width: 1000px;
+            border-radius: 18px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+            padding: 30px;
+        }
+
+        h2 {
+            color: #2e7d32;
+            text-align: center;
+            margin-top: 0;
+        }
+
+        .section {
+            margin-top: 20px;
+            background: #f7fbf8;
+            border-left: 6px solid #2e7d32;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .section h3 {
+            margin-top: 0;
+            color: #1e5a28;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 12px;
+        }
+
+        .box {
+            background: #f1f8f4;
+            border-radius: 10px;
+            padding: 12px 14px;
+            color: #2c3e2f;
+        }
+
+        .actions {
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            border-radius: 10px;
+            color: white;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+
+        .btn-green {
+            background: #2e7d32;
+        }
+
+        .btn-green:hover {
+            background: #256428;
+        }
+
+        .btn-gray {
+            background: #607d8b;
+        }
+
+        .btn-gray:hover {
+            background: #4b636e;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Agrométrica System</h1>
+</header>
+
+<main>
+    <div class="container">
+        <h2>Detalle Completo del Registro</h2>
+
+        <div class="section">
+            <h3>Información general</h3>
+            <div class="grid">
+                <div class="box"><strong>Granja:</strong> <span th:text="${registro.nombreGranja}"></span></div>
+                <div class="box"><strong>Fecha de registro:</strong> <span th:text="${registro.fechaRegistro}"></span></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>Producción</h3>
+            <div class="grid">
+                <div class="box"><strong>Número de animales:</strong> <span th:text="${registro.numeroAnimales}"></span></div>
+                <div class="box"><strong>Fecha inicio:</strong> <span th:text="${registro.fechaInicio}"></span></div>
+                <div class="box"><strong>Fecha fin:</strong> <span th:text="${registro.fechaFin}"></span></div>
+                <div class="box"><strong>Peso inicial:</strong> <span th:text="${registro.pesoInicial}"></span></div>
+                <div class="box"><strong>Peso final:</strong> <span th:text="${registro.pesoFinal}"></span></div>
+                <div class="box"><strong>Muertos:</strong> <span th:text="${registro.muertos}"></span></div>
+                <div class="box"><strong>Vendidos producción:</strong> <span th:text="${registro.vendidosProduccion}"></span></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>Alimentación</h3>
+            <div class="grid">
+                <div class="box"><strong>Consumo total:</strong> <span th:text="${registro.consumoTotal}"></span></div>
+                <div class="box"><strong>Consumo diario:</strong> <span th:text="${registro.consumoDiario}"></span></div>
+                <div class="box"><strong>Precio kg alimento:</strong> <span th:text="${registro.precioKgAlimento}"></span></div>
+                <div class="box"><strong>Desperdicio:</strong> <span th:text="${registro.desperdicio}"></span></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>Sanidad</h3>
+            <div class="grid">
+                <div class="box"><strong>Enfermos:</strong> <span th:text="${registro.enfermos}"></span></div>
+                <div class="box"><strong>Tratamientos:</strong> <span th:text="${registro.tratamientos}"></span></div>
+                <div class="box"><strong>Costo medicamentos:</strong> <span th:text="${registro.costoMedicamentos}"></span></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>Reproducción</h3>
+            <div class="grid">
+                <div class="box"><strong>Cerdas:</strong> <span th:text="${registro.cerdas}"></span></div>
+                <div class="box"><strong>Partos:</strong> <span th:text="${registro.partos}"></span></div>
+                <div class="box"><strong>Lechones vivos:</strong> <span th:text="${registro.lechonesVivos}"></span></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>Costos</h3>
+            <div class="grid">
+                <div class="box"><strong>Costo alimento:</strong> <span th:text="${registro.costoAlimento}"></span></div>
+                <div class="box"><strong>Mano de obra:</strong> <span th:text="${registro.costoManoObra}"></span></div>
+                <div class="box"><strong>Energía:</strong> <span th:text="${registro.costoEnergia}"></span></div>
+                <div class="box"><strong>Otros:</strong> <span th:text="${registro.costoOtros}"></span></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>Ventas</h3>
+            <div class="grid">
+                <div class="box"><strong>Vendidos venta:</strong> <span th:text="${registro.vendidosVenta}"></span></div>
+                <div class="box"><strong>Peso total venta:</strong> <span th:text="${registro.pesoTotalVenta}"></span></div>
+                <div class="box"><strong>Precio kg venta:</strong> <span th:text="${registro.precioKgVenta}"></span></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>Resultados calculados</h3>
+            <div class="grid">
+                <div class="box"><strong>Peso ganado:</strong> <span th:text="${registro.pesoGanado}"></span></div>
+                <div class="box"><strong>ICA:</strong> <span th:text="${registro.ica}"></span></div>
+                <div class="box"><strong>Costo total:</strong> <span th:text="${registro.costoTotal}"></span></div>
+                <div class="box"><strong>Ingreso:</strong> <span th:text="${registro.ingreso}"></span></div>
+                <div class="box"><strong>Utilidad:</strong> <span th:text="${registro.utilidad}"></span></div>
+                <div class="box"><strong>Rentabilidad:</strong> <span th:text="${registro.rentabilidad}"></span>%</div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <a th:href="@{/porcino/lista}" class="btn btn-green">Volver a registros</a>
+            <a th:href="@{/inicio}" class="btn btn-gray">Ir al inicio</a>
+        </div>
+    </div>
+</main>
+</body>
+</html>
