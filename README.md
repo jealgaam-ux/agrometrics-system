@@ -24,6 +24,9 @@ La aplicación sigue una arquitectura en capas:
 - Entity: modelado de la base de datos  
 - View: interfaz de usuario desarrollada con Thymeleaf  
 
+<img width="1104" height="537" alt="image" src="https://github.com/user-attachments/assets/4ba69449-939c-4017-a93d-fa47e09536fb" />
+
+
 ## Requerimientos
 
 - Java 17 o superior  
