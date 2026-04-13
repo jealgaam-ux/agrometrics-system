@@ -1,4 +1,12 @@
 # Agrométrica System
+## Tabla de contenidos
+
+- [Requerimientos](../../wiki/Requerimientos)
+- [Instalación](../../wiki/Instalación)
+- [Configuración](../../wiki/Configuración)
+- [Uso](../../wiki/Uso)
+- [Contribución](../../wiki/Contribución)
+- [Roadmap](../../wiki/Roadmap)
 
 Sistema web para la gestión y análisis de producción porcina, desarrollado con Spring Boot.
 
