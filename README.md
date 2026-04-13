@@ -44,7 +44,7 @@ Dependencias principales:
 
 Clonar el repositorio:
 
-git clone https://github.com/TU-USUARIO/agrometrica-system.git
+git clone https://github.com/jealgaam-ux/agrometrics-system.git
 
 Acceder al proyecto:
 
