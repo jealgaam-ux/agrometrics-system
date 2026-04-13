@@ -2,87 +2,95 @@
 
 Sistema web para la gestión y análisis de producción porcina, desarrollado con Spring Boot.
 
----
-
 ## Descripción
 
-Agrométrica System es una aplicación web diseñada para registrar, calcular y analizar información relacionada con la producción porcina. El sistema permite capturar datos productivos, sanitarios, alimenticios y económicos de cada ciclo, generando indicadores clave que apoyan la toma de decisiones.
-
----
+Agrométrica System es una aplicación web orientada al registro, cálculo y análisis de datos productivos, alimenticios y económicos en granjas porcinas. Permite centralizar la información de cada ciclo productivo y generar indicadores clave para facilitar la toma de decisiones.
 
 ## Problema identificado
 
-En muchas unidades de producción porcina, el control de información se realiza de forma manual o mediante herramientas dispersas. Esto genera:
-
-- Falta de control y trazabilidad de los ciclos productivos
-- Errores en cálculos de costos, ingresos y rentabilidad
-- Dificultad para analizar el desempeño histórico
-- Toma de decisiones basada en información incompleta
-
----
+En muchas granjas porcinas, la información se registra de forma manual o en herramientas aisladas, lo que ocasiona falta de control, errores en cálculos, pérdida de información histórica y dificultad para evaluar la rentabilidad de los ciclos productivos.
 
 ## Solución
 
-Se desarrolló un sistema web que permite:
-
-- Registrar ciclos productivos porcinos
-- Calcular automáticamente indicadores como peso ganado, índice de conversión alimenticia, costos, ingresos y rentabilidad
-- Almacenar la información en una base de datos centralizada
-- Consultar registros mediante filtros por nombre de granja y fecha
-- Visualizar el detalle completo de cada registro
-
----
+El sistema desarrollado permite registrar ciclos porcinos, automatizar el cálculo de indicadores como peso ganado, índice de conversión alimenticia, costos, ingresos y rentabilidad, almacenar la información en una base de datos centralizada y consultar registros mediante filtros por nombre de granja y fecha.
 
 ## Arquitectura
 
-El sistema está basado en una arquitectura en capas:
+La aplicación sigue una arquitectura en capas:
 
-- Controller: Manejo de rutas HTTP y comunicación con las vistas
-- Service: Implementación de la lógica de negocio y cálculos
-- Repository: Acceso a datos mediante Spring Data JPA
-- Entity: Modelado de las tablas de la base de datos
-- View: Interfaces construidas con HTML y Thymeleaf
-
----
-
-## Tabla de contenidos
-
-- Descripción
-- Problema identificado
-- Solución
-- Arquitectura
-- Requerimientos
-- Instalación
-- Configuración
-- Uso
-- Contribución
-- Roadmap
-- Video de demostración
-- Despliegue
-
----
+- Controller: gestión de rutas y comunicación con las vistas  
+- Service: lógica de negocio y cálculos  
+- Repository: acceso a datos mediante Spring Data JPA  
+- Entity: modelado de la base de datos  
+- View: interfaz de usuario desarrollada con Thymeleaf  
 
 ## Requerimientos
 
-- Java 17 o superior
-- Maven
-- Conexión a base de datos PostgreSQL
-- Cuenta en Railway para base de datos en la nube
+- Java 17 o superior  
+- Maven  
+- Base de datos PostgreSQL  
+- Conexión a Railway (opcional para despliegue en la nube)  
 
 Dependencias principales:
 
-- Spring Boot
-- Spring Web
-- Spring Data JPA
-- Spring Security
-- Thymeleaf
-- PostgreSQL Driver
+- Spring Boot  
+- Spring Web  
+- Spring Data JPA  
+- Spring Security  
+- Thymeleaf  
+- PostgreSQL Driver  
 
----
+## Instalación, configuración y ejecución
 
-## Instalación
+Clonar el repositorio:
 
-1. Clonar el repositorio:
+git clone https://github.com/TU-USUARIO/agrometrica-system.git
 
-```bash
-git clone https://github.com/jealgaam-ux/agrometrics-system.git
+Acceder al proyecto:
+
+cd agrometrica-system
+
+Abrir el proyecto en IntelliJ IDEA o NetBeans.
+
+Configurar la base de datos en el archivo application.properties:
+
+spring.datasource.url=jdbc:postgresql://HOST:PUERTO/NOMBRE_DB
+spring.datasource.username=USUARIO
+spring.datasource.password=CONTRASEÑA
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
+Ejecutar la aplicación:
+
+mvn spring-boot:run
+
+## Uso del sistema
+
+El sistema permite iniciar sesión, registrar ciclos porcinos mediante formularios, generar cálculos automáticos de indicadores productivos y económicos, consultar registros almacenados, aplicar filtros por nombre de granja y fecha, y visualizar el detalle completo de cada registro.
+
+## Seguridad
+
+El sistema implementa autenticación mediante Spring Security y utiliza encriptación de contraseñas con BCrypt, evitando el almacenamiento de credenciales en texto plano.
+
+## Contribución
+
+Para contribuir al proyecto se debe crear una nueva rama, realizar los cambios y enviarlos al repositorio:
+
+git checkout -b feature/nueva-funcionalidad
+git commit -m "Descripción del cambio"
+git push origin feature/nueva-funcionalidad
+
+Posteriormente, se debe generar un Pull Request.
+
+## Roadmap
+
+Se contemplan mejoras futuras como la implementación de paneles de control con gráficos, exportación de reportes en formato PDF o Excel, integración de nuevos módulos productivos, gestión de usuarios y roles, así como la implementación de una API REST.
+
+## Video de demostración
+
+Se debe incluir un video que muestre el funcionamiento completo del sistema, incluyendo inicio de sesión, registro de datos, generación de cálculos, consulta de registros, aplicación de filtros y visualización del detalle.
+
+## Despliegue
+
+El sistema puede ejecutarse en entorno local mediante Spring Boot. La base de datos se encuentra alojada en Railway, lo que permite persistencia de datos y acceso remoto.
